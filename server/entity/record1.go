@@ -1,7 +1,7 @@
 package entity
 
 type Record1 struct {
-	ID          int    `gorm:"Column:id; Type:bigint; primaryKey; autoIncrement"`
+	ID          int    `gorm:"Column:id; primaryKey; autoIncrement"`
 	ProjectUUID string `gorm:"Column:project_uuid; Type:text"`
 	Description string `gorm:"Column:description; Type:text"`
 	Type        string `gorm:"Column:type; Type:text"`

@@ -2,6 +2,7 @@ package entity
 
 import (
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/google/uuid"
@@ -26,12 +27,14 @@ var (
 )
 
 func (fac Factory) NewRecord1(prj, des, record1Type, note string) (*Record1, error) {
+	log.Println("record1 type:", record1Type)
 	for i := range record1Types {
 		if record1Type == record1Types[i] {
 			break
 		}
-
-		return nil, ErrRecord1InvalidType
+		if i == len(record1Types)-1 {
+			return nil, ErrRecord1InvalidType
+		}
 	}
 
 	return &Record1{
