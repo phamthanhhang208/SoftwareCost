@@ -48,8 +48,8 @@ export default function EditTableCell(props) {
         const save = async () => {
           try {
             const values = await form.validateFields();
-            toggleEdit();
             console.log(values)
+            toggleEdit();
             handleSave({ ...record, ...values });
           } catch (errInfo) {
             console.log('Save failed:', errInfo);
@@ -70,7 +70,7 @@ export default function EditTableCell(props) {
                 {options.map(option => {
                     return <Option key = {option.value} >{option.label}</Option>
                 })}
-            </Select> : <Input ref={inputRef} onPressEnter={save} onBlur={save} />}
+            </Select>: <Input ref={inputRef} onPressEnter={save} onBlur={save} /> }
               
             </Form.Item>
           ) : (
@@ -97,7 +97,7 @@ export default function EditTableCell(props) {
         },
     };
     const handleSave = (row) => {
-        props.handleChangePoint(row.key,row.diem)
+        props.handleChangePoint(row)
     }
     const columns = props.columns.map((col) => {
         if (!col.editable) {
@@ -116,16 +116,32 @@ export default function EditTableCell(props) {
         };
       });
 
-
     return (
         <div>
-            <Table
+            <Table 
                 components={components}
                 rowClassName={() => 'editable-row'}
                 bordered
                 dataSource={dataSource}
                 columns={columns}
                 pagination = {false}
+                summary = {(pageData) =>{
+                  return (
+                    <>
+                    {
+                      props.summaryCells.map((cell)=>{
+                          return <Table.Summary.Row key ={cell.key}>
+                                <Table.Summary.Cell > {cell.name}</Table.Summary.Cell>
+                                <Table.Summary.Cell colSpan={cell.colSpan}>
+                                    {cell.value}
+                                </Table.Summary.Cell>
+                            </Table.Summary.Row>
+                      }) 
+                    }
+                    </>
+                  ) 
+                   
+                }}
             />
         </div>
     )

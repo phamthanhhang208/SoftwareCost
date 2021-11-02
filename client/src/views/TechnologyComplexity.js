@@ -1,7 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import ProjectDetailsLayout from '../components/ProjectDetailsLayout'
 import EditTableCell from '../components/EditTableCell';
 import 'antd/dist/antd.css';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
+
 
 const columns = [
     {
@@ -34,7 +38,7 @@ const initalValues = [
         trongso: 2,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-',
     },
     {
         key: '1',
@@ -42,7 +46,7 @@ const initalValues = [
         trongso: 1,
         diem: 0 ,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '2',
@@ -50,7 +54,7 @@ const initalValues = [
         trongso: 1,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '3',
@@ -58,7 +62,7 @@ const initalValues = [
         trongso: 1,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '4',
@@ -66,7 +70,7 @@ const initalValues = [
         trongso: 2,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '5',
@@ -74,7 +78,7 @@ const initalValues = [
         trongso: 0.5,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '6',
@@ -82,7 +86,7 @@ const initalValues = [
         trongso: 0.5,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '7',
@@ -90,7 +94,7 @@ const initalValues = [
         trongso: 2,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '8',
@@ -98,7 +102,7 @@ const initalValues = [
         trongso: 1,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '9',
@@ -106,7 +110,7 @@ const initalValues = [
         trongso: 1,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '10',
@@ -114,7 +118,7 @@ const initalValues = [
         trongso: 1,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '11',
@@ -122,7 +126,7 @@ const initalValues = [
         trongso: 1,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '12',
@@ -130,7 +134,7 @@ const initalValues = [
         trongso: 1,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
     {
         key: '13',
@@ -138,7 +142,7 @@ const initalValues = [
         trongso: 1,
         diem: 0,
         ketqua: 0,
-        note: ''
+        note: '-'
     },
 ]
 
@@ -169,27 +173,62 @@ const scoreOptions = [
     }
 ]
 
-export default function UseCasePoint() {
+const initialsummaryRow = [
+    {
+        key: '14',
+        name: "Hệ số KT-CN (TFW)",
+        colSpan: 3,
+        value: 0,
+    }, 
+    {
+        key: '15',
+        name: "Hệ số phức tạp về KT-CN (TCF)",
+        colSpan: 3,
+        value: 0,
+    }
+]
+
+export default function TechnologyComplexity() {
     const [datas,setDatas] = useState(initalValues)
+    const [summaryCells,setSummaryCells] = useState(initialsummaryRow)
+    
 
-    const handleChangePoint = (id,score) => {
-       const newData = datas.map(data => {
-           if(data.key === id) return {...data, diem:score, ketqua: score * data.trongso}
-           return data
-       })
-
+    const handleSummaryValues = (totalScore) => {
+        const tfw = Math.floor(totalScore)
+        const tcf = (0.6 + (0.01 * tfw)).toFixed(2)
+        const summaryValues = [...summaryCells]
+        summaryValues[0].value = tfw
+        summaryValues[1].value = tcf
+        setSummaryCells(summaryValues)
+    }
+    const handleChangePoint = (row) => {
+        const {key,diem,note} = row
+        const newData = datas.map(data => {
+            if(data.key === key) return {...data, diem:diem, ketqua: diem * data.trongso, note: note}
+            return data
+        })
        setDatas(newData)
     }
+
+    useEffect(()=>{
+        let totalScore = 0
+        for (let i=0; i< datas.length; i++){
+            totalScore += datas[i].ketqua
+        }
+        handleSummaryValues(totalScore)
+    },[datas])
 
 
 
     return (
         <ProjectDetailsLayout>
+            <Title level={3}>Bảng tính toán hệ số phức tạp kỹ thuật - công nghệ</Title>
             <EditTableCell 
             columns={columns} 
             dataSource={datas} 
             handleChangePoint={handleChangePoint} 
             options ={scoreOptions}
+            summaryCells = {summaryCells}
             />
         </ProjectDetailsLayout>
     )
