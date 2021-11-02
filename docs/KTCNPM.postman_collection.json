@@ -171,6 +171,61 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "[table3] Get ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table3",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[table3] Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"records\": [\n        {\n            \"actor\": \"main_actor test 1\",\n            \"type\": \"\",\n            \"des\": \"\",\n            \"note\": \"\"\n        },\n        {\n            \"actor\": \"sub_actor test 1\",\n            \"type\": \"\",\n            \"des\": \"\",\n            \"note\": \"\"\n        },\n        {\n            \"actor\": \"main_actor test 2\",\n            \"type\": \"simple\",\n            \"des\": \"\",\n            \"note\": \"\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table3",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table3"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

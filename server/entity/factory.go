@@ -68,3 +68,44 @@ func (fac Factory) NewRecord2(prj, usecase, mainactor, subactor, des, priority s
 		Priority:    priority,
 	}, nil
 }
+
+func (fac Factory) NewRecord3(prj, actor, record3type, des, note string) (*Record3, error) {
+	if err := validateRecord3Type(record3type); err != nil {
+		return nil, err
+	}
+
+	return &Record3{
+		ProjectUUID: prj,
+		Actor:       actor,
+		Type:        record3type,
+		Description: des,
+		Note:        note,
+	}, nil
+}
+
+func (fac Factory) NewTable3FromRecord2(record2s []*Record2) *Table3 {
+	var actorMap = make(map[string]*Record3)
+
+	for i := range record2s {
+		fmt.Println(record2s[i].MainActor, record2s[i].SubActor)
+		if record2s[i].MainActor != "" {
+			_, ok := actorMap[record2s[i].MainActor]
+			if !ok {
+				record3, _ := fac.NewRecord3(record2s[i].ProjectUUID, record2s[i].MainActor, "", "", "")
+				actorMap[record2s[i].MainActor] = record3
+			}
+		}
+
+		if record2s[i].SubActor != "" {
+			_, ok := actorMap[record2s[i].SubActor]
+			if !ok {
+				record3, _ := fac.NewRecord3(record2s[i].ProjectUUID, record2s[i].SubActor, "", "", "")
+				actorMap[record2s[i].SubActor] = record3
+			}
+		}
+	}
+
+	return &Table3{
+		ActorMap: actorMap,
+	}
+}
