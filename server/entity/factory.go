@@ -2,6 +2,7 @@ package entity
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/google/uuid"
 )
@@ -21,7 +22,7 @@ func (fac Factory) NewProject(name string) *Project {
 
 var (
 	record1Types          = []string{"data input", "data output", "queries", "database", "search data"}
-	ErrRecord1InvalidType = fmt.Errorf("record 1 types must be 1 of %v", record1Types)
+	ErrRecord1InvalidType = fmt.Errorf("record 1 types must be 1 of %s", strings.Join(record1Types, ", "))
 )
 
 func (fac Factory) NewRecord1(prj, des, record1Type, note string) (*Record1, error) {
