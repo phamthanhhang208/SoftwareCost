@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  database:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER:      ktcnpmuser
+      POSTGRES_PASSWORD:  ktcnpmpass
+      POSTGRES_DB:        ktcnpmdb
+    networks:
+      - intranet
+
+  server:
+    build:
+      context: ../server
+      dockerfile: ../server/Dockerfile
+    depends_on:
+      - database
+    environment:
+      DB_HOST:    database
+      WAIT_HOSTS: database:5432
+      WAIT_AFTER: 5
+    ports:
+      - 11000:11000
+    networks:
+      - intranet
+
+networks:
+  intranet:
