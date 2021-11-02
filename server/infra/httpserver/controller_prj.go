@@ -34,7 +34,7 @@ func (ctrl PrjController) CreateProject(c *gin.Context) {
 
 	resp := new(dto.CreateProjectResp)
 	resp.SetCode(http.StatusOK)
-	resp.SetData(prj.Name)
+	resp.SetData(prj.UUID)
 
 	c.JSON(http.StatusOK, resp)
 }
