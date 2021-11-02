@@ -100,7 +100,74 @@
 					}
 				},
 				"url": {
-					"raw": ""
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[table2] Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"usecase\": \"usecase test 1\",\n    \"main_actor\": \"main_actor test 1\",\n    \"sub_actor\": \"sub_actor test 1\",\n    \"des\": \"des test 1\",\n    \"priority\": \"T\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[table2] Get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table2"
+					]
 				}
 			},
 			"response": []

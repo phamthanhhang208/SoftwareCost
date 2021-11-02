@@ -15,6 +15,10 @@ func NewRouter() *gin.Engine {
 			table1Ctrl := NewTable1Ctrl()
 			prjCtrlGr.POST("/table1", table1Ctrl.CreateRecord1)
 			prjCtrlGr.GET("/table1", table1Ctrl.GetList)
+
+			table2Ctrl := NewTable2Ctrl()
+			prjCtrlGr.POST("/table2", table2Ctrl.Create)
+			prjCtrlGr.GET("/table2", table2Ctrl.GetList)
 		}
 	}
 

@@ -64,5 +64,6 @@ func autoMigrate() error {
 	return gDB.AutoMigrate(
 		entity.Project{},
 		entity.Record1{},
+		entity.Record2{},
 	)
 }
