@@ -16,8 +16,8 @@ const EditableRow = ({ index, ...props }) => {
 
 
 export default function EditTableCell(props) {
-    const dataSource  = props.dataSource
-    const options = props.options
+    const {dataSource, options, showHeader }  = props
+    //console.log(showHeader)
     
     const EditableCell = ({
         title,
@@ -66,12 +66,12 @@ export default function EditTableCell(props) {
               }}
               name={dataIndex}
             >
-            {dataIndex === 'diem' ? <Select ref={inputRef} onChange={save}>
+            {(dataIndex.includes("diem")) ? <Select ref={inputRef} onChange={save}>
                 {options.map(option => {
                     return <Option key = {option.value} >{option.label}</Option>
                 })}
             </Select>: <Input ref={inputRef} onPressEnter={save} onBlur={save} /> }
-              
+            
             </Form.Item>
           ) : (
             <div
@@ -118,7 +118,8 @@ export default function EditTableCell(props) {
 
     return (
         <div>
-            <Table 
+            <Table
+                showHeader = { !!showHeader || true }
                 components={components}
                 rowClassName={() => 'editable-row'}
                 bordered

@@ -216,7 +216,7 @@ export default function TechnologyComplexity() {
             totalScore += datas[i].ketqua
         }
         handleSummaryValues(totalScore)
-    },[datas])
+    },[datas]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
 

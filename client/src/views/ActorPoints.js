@@ -100,7 +100,7 @@ export default function ActorPoints(){
             totalScore += datas[i].ketqua
         }
         handleSummaryValues(totalScore)
-    },[datas])
+    },[datas]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return(
         <ProjectDetailsLayout>
