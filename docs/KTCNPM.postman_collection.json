@@ -92,7 +92,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"des test1\",\n    \"type\": \"queries\",\n    \"note\": \"note test1\"\n}",
+					"raw": "{\n    \"description\": \"dé test1\",\n    \"type\": \"queries\",\n    \"note\": \"note test1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -300,6 +300,182 @@
 						"projects",
 						"{{project_id}}",
 						"table5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[table5] Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"DistributedRank\": 0,\n    \"InstantRank\": 0,\n    \"OnlineRank\": 0,\n    \"ComplexityRank\": 0,\n    \"ReusableRank\": 1,\n    \"EasyInstallRank\": 0,\n    \"EasyUseRank\": 0,\n    \"ConvertableRank\": 3,\n    \"EasyConvertRank\": 0,\n    \"ConcurrencyRank\": 4,\n    \"SpecialSecurityRank\": 0,\n    \"Direct3rdPartyRank\": 0,\n    \"SpecialTrainingRank\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table5",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[table7] Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table7",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[table7 - employee] Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rup_rank\": 2,\n    \"similar_rank\": 2,\n    \"oop_rank\": 2,\n    \"leader_rank\": 2,\n    \"active_rank\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table7/employee",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table7",
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[table7 - project] Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"request_stable_rank\": 2,\n    \"part_time_rank\": 1,\n    \"hard_language_rank\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table7/project",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table7",
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[table8] Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table8",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[table8] Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"h\": 1000000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table8",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table8"
 					]
 				}
 			},

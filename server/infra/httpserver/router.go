@@ -31,6 +31,15 @@ func NewRouter() *gin.Engine {
 			table5Ctrl := NewTable5Ctrl()
 			prjCtrlGr.GET("/table5", table5Ctrl.Get)
 			prjCtrlGr.PUT("/table5", table5Ctrl.Update)
+
+			table7Ctrl := NewTable7Controller()
+			prjCtrlGr.GET("/table7", table7Ctrl.Get)
+			prjCtrlGr.POST("/table7/employee", table7Ctrl.CreateEmployee)
+			prjCtrlGr.PUT("/table7/project", table7Ctrl.UpdateProject)
+
+			table8Ctrl := NewTable8Ctrl()
+			prjCtrlGr.GET("/table8", table8Ctrl.Get)
+			prjCtrlGr.PUT("/table8", table8Ctrl.Update)
 		}
 	}
 

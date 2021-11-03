@@ -206,3 +206,68 @@ func (fac Factory) NewTable5(prj string, spec CreateTable5Spec) (*Table5, error)
 		Direct3rdPartyRank:  spec.Direct3rdPartyRank,
 	}, nil
 }
+
+func (fac Factory) NewTable7(prjID string, employee []Record7Employee, project Record7Project) *Table7 {
+	return &Table7{
+		ProjectUUID:     prjID,
+		EmployeeRecords: employee,
+		Project:         project,
+	}
+}
+
+func (fac Factory) NewRecord7Employee(project string, rupRank, similarRank, oopRank, leaderRank, activeRank int) (*Record7Employee, error) {
+	if !checkRecord7Rank(rupRank) {
+		return nil, errors.New("invalid rupRank")
+	}
+	if !checkRecord7Rank(similarRank) {
+		return nil, errors.New("invalid similarRank")
+	}
+	if !checkRecord7Rank(oopRank) {
+		return nil, errors.New("invalid oopRank")
+	}
+	if !checkRecord7Rank(leaderRank) {
+		return nil, errors.New("invalid leaderRank")
+	}
+	if !checkRecord7Rank(activeRank) {
+		return nil, errors.New("invalid activeRank")
+	}
+
+	return &Record7Employee{
+		ProjectUUID: project,
+		RUPRank:     rupRank,
+		SimilarRank: similarRank,
+		OOPRank:     oopRank,
+		LeaderRank:  leaderRank,
+		ActiveRank:  activeRank,
+	}, nil
+}
+
+func (fac Factory) NewRecord7Project(project string, requestStableRank, partTimeRank, hardLanguageRank int) (*Record7Project, error) {
+	if !checkRecord7Rank(requestStableRank) {
+		return nil, errors.New("invalid requestStableRank")
+	}
+	if !checkRecord7Rank(partTimeRank) {
+		return nil, errors.New("invalid partTimeRank")
+	}
+	if !checkRecord7Rank(hardLanguageRank) {
+		return nil, errors.New("invalid hardLanguageRank")
+	}
+
+	return &Record7Project{
+		ProjectUUID:       project,
+		RequestStableRank: requestStableRank,
+		PartTimeRank:      partTimeRank,
+		HardLanguageRank:  hardLanguageRank,
+	}, nil
+}
+
+func (fac Factory) NewTable8(project string, salary float64, t3 *Table3, t4 *Table4, t5 *Table5, t7 *Table7) *Table8 {
+	return &Table8{
+		ProjectUUID: project,
+		Salary:      salary,
+		Table3:      *t3,
+		Table4:      *t4,
+		Table5:      *t5,
+		Table7:      *t7,
+	}
+}
