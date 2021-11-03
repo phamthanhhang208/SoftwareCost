@@ -20,5 +20,5 @@ func (g GormRepo) FirstOrCreateTable5(ctx context.Context, prj string) (*entity.
 }
 
 func (g GormRepo) SaveTable5(ctx context.Context, table5 *entity.Table5) error {
-	return gDB.WithContext(ctx).Model(table5Md).Save(table5).Error
+	return gDB.WithContext(ctx).Model(table5Md).Where("project_uuid = ?", table5.ProjectUUID).Save(table5).Error
 }

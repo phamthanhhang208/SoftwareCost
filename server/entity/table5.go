@@ -1,5 +1,7 @@
 package entity
 
+import "errors"
+
 type Table5 struct {
 	ProjectUUID         string `gorm:"Column:project_uuid; Type:text; primaryKey"`
 	DistributedRank     int    `gorm:"Column:distributed_rank; Type:int"`
@@ -43,4 +45,79 @@ func (t Table5) CalculateTCF() float64 {
 
 func checkTable5Rank(rank int) bool {
 	return rank >= 0 && rank <= 5
+}
+
+type UpdateTable5Spec struct {
+	DistributedRank     int
+	InstantRank         int
+	OnlineRank          int
+	ComplexityRank      int
+	ReusableRank        int
+	EasyInstallRank     int
+	EasyUseRank         int
+	ConvertableRank     int
+	EasyConvertRank     int
+	ConcurrencyRank     int
+	SpecialSecurityRank int
+	Direct3rdPartyRank  int
+	SpecialTrainingRank int
+}
+
+func (t *Table5) Update(spec UpdateTable5Spec) error {
+	if !checkTable5Rank(spec.DistributedRank) {
+		return errors.New("invalid DistributedRank")
+	}
+
+	if !checkTable5Rank(spec.InstantRank) {
+		return errors.New("invalid InstantRank")
+	}
+	if !checkTable5Rank(spec.OnlineRank) {
+		return errors.New("invalid OnlineRank")
+	}
+	if !checkTable5Rank(spec.ComplexityRank) {
+		return errors.New("invalid ComplexityRank")
+	}
+	if !checkTable5Rank(spec.ReusableRank) {
+		return errors.New("invalid ReusableRank")
+	}
+	if !checkTable5Rank(spec.EasyInstallRank) {
+		return errors.New("invalid EasyInstallRank")
+	}
+	if !checkTable5Rank(spec.EasyUseRank) {
+		return errors.New("invalid EasyUseRank")
+	}
+	if !checkTable5Rank(spec.ConvertableRank) {
+		return errors.New("invalid ConvertableRank")
+	}
+	if !checkTable5Rank(spec.EasyConvertRank) {
+		return errors.New("invalid EasyConvertRank")
+	}
+	if !checkTable5Rank(spec.ConcurrencyRank) {
+		return errors.New("invalid ConcurrencyRank")
+	}
+	if !checkTable5Rank(spec.SpecialSecurityRank) {
+		return errors.New("invalid SpecialSecurityRank")
+	}
+	if !checkTable5Rank(spec.Direct3rdPartyRank) {
+		return errors.New("invalid Direct3rdPartyRank")
+	}
+	if !checkTable5Rank(spec.SpecialTrainingRank) {
+		return errors.New("invalid SpecialTrainingRank")
+	}
+
+	t.SpecialTrainingRank = spec.SpecialTrainingRank
+	t.DistributedRank = spec.DistributedRank
+	t.InstantRank = spec.InstantRank
+	t.OnlineRank = spec.OnlineRank
+	t.ComplexityRank = spec.ComplexityRank
+	t.ReusableRank = spec.ReusableRank
+	t.EasyInstallRank = spec.EasyInstallRank
+	t.EasyUseRank = spec.EasyUseRank
+	t.ConvertableRank = spec.ConvertableRank
+	t.EasyConvertRank = spec.EasyConvertRank
+	t.ConcurrencyRank = spec.ConcurrencyRank
+	t.SpecialSecurityRank = spec.SpecialSecurityRank
+	t.Direct3rdPartyRank = spec.Direct3rdPartyRank
+
+	return nil
 }

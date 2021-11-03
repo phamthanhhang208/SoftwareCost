@@ -41,3 +41,19 @@ func (resp *GetTable5Resp) SetData(table *entity.Table5) {
 	resp.TFW = table.CalculateTFW()
 	resp.TCF = table.CalculateTCF()
 }
+
+type UpdateTable5Req struct {
+	DistributedRank     int
+	InstantRank         int
+	OnlineRank          int
+	ComplexityRank      int
+	ReusableRank        int
+	EasyInstallRank     int
+	EasyUseRank         int
+	ConvertableRank     int
+	EasyConvertRank     int
+	ConcurrencyRank     int
+	SpecialSecurityRank int
+	Direct3rdPartyRank  int
+	SpecialTrainingRank int
+}

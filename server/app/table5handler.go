@@ -22,3 +22,20 @@ func NewTable5Handler() *Table5Handler {
 func (h Table5Handler) Get(ctx context.Context, prj string) (*entity.Table5, error) {
 	return h.repo.FirstOrCreateTable5(ctx, prj)
 }
+
+func (h Table5Handler) Update(ctx context.Context, prj string, spec entity.UpdateTable5Spec) error {
+	table5, err := h.repo.FirstOrCreateTable5(ctx, prj)
+	if err != nil {
+		return err
+	}
+
+	if err := table5.Update(spec); err != nil {
+		return err
+	}
+
+	if err := h.repo.SaveTable5(ctx, table5); err != nil {
+		return err
+	}
+
+	return nil
+}
