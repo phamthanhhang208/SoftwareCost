@@ -109,3 +109,27 @@ func (fac Factory) NewTable3FromRecord2(record2s []*Record2) *Table3 {
 		ActorMap: actorMap,
 	}
 }
+
+func (fac Factory) NewTable4FromRecord2(prj string, record2s []*Record2) *Table4 {
+	var (
+		bTotal, mTotal, tTotal int
+	)
+
+	for i := range record2s {
+		switch record2s[i].Priority {
+		case "B":
+			bTotal++
+		case "M":
+			mTotal++
+		case "T":
+			tTotal++
+		}
+	}
+
+	return &Table4{
+		ProjectUUID: prj,
+		BTotal:      bTotal,
+		MTotal:      mTotal,
+		TTotal:      tTotal,
+	}
+}

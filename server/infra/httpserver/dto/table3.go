@@ -5,6 +5,7 @@ import "github.com/phamthanhhang208/SoftwareCost/server/entity"
 type GetTable3Resp struct {
 	DefaultResp
 	Records []Record3DTO `json:"records"`
+	TAW     int          `json:"taw"`
 }
 
 type Record3DTO struct {
@@ -28,6 +29,8 @@ func (resp *GetTable3Resp) SetData(data *entity.Table3) {
 			Note:  v.Note,
 		})
 	}
+
+	resp.TAW = data.CalculateTAW()
 }
 
 type UpdateTable3Req struct {

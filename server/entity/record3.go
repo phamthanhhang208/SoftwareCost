@@ -71,3 +71,20 @@ func (t *Table3) UpdateByRecord3(records ...*Record3) error {
 
 	return nil
 }
+
+func (t Table3) CalculateTAW() int {
+	var TAW int
+
+	for _, v := range t.ActorMap {
+		switch v.Type {
+		case "simple":
+			TAW += 1
+		case "medium":
+			TAW += 2
+		case "complex":
+			TAW += 3
+		}
+	}
+
+	return TAW
+}
