@@ -32,6 +32,20 @@ func (ctrl Table8Controller) Get(c *gin.Context) {
 	c.JSON(http.StatusOK, resp)
 }
 
+func (ctrl Table8Controller) GetTable9(c *gin.Context) {
+	table8, err := ctrl.app.Get(c, getProjectID(c))
+	if err != nil {
+		ginAbortInternalError(c, err.Error())
+		return
+	}
+
+	resp := new(dto.GetTable9Resp)
+	resp.SetCode(http.StatusOK)
+	resp.SetData(table8)
+
+	c.JSON(http.StatusOK, resp)
+}
+
 func (ctrl Table8Controller) Update(c *gin.Context) {
 	var req = new(dto.UpdateTable8Req)
 	if err := c.ShouldBindJSON(req); err != nil {

@@ -49,3 +49,15 @@ func (t Table8) CalculateE() float64 {
 func (t Table8) CalculateG() float64 {
 	return 1.4 * t.CalculateE() * t.CalculateP() * t.Salary
 }
+
+func (t Table8) CalculateC() float64 {
+	return t.CalculateG() * 0.65
+}
+
+func (t Table8) CalculateTL() float64 {
+	return (t.CalculateG() + t.CalculateC()) * 0.06
+}
+
+func (t Table8) CalculateGPM() float64 {
+	return (t.CalculateG() + t.CalculateC() + t.CalculateTL())
+}

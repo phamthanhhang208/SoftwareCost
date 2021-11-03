@@ -400,7 +400,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"request_stable_rank\": 2,\n    \"part_time_rank\": 1,\n    \"hard_language_rank\": 1\n}",
+					"raw": "{\n    \"request_stable_rank\": 1,\n    \"part_time_rank\": 2,\n    \"hard_language_rank\": 1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -476,6 +476,29 @@
 						"projects",
 						"{{project_id}}",
 						"table8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[table9] Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table9",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table9"
 					]
 				}
 			},

@@ -40,6 +40,8 @@ func NewRouter() *gin.Engine {
 			table8Ctrl := NewTable8Ctrl()
 			prjCtrlGr.GET("/table8", table8Ctrl.Get)
 			prjCtrlGr.PUT("/table8", table8Ctrl.Update)
+
+			prjCtrlGr.GET("/table9", table8Ctrl.GetTable9)
 		}
 	}
 
