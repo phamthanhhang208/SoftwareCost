@@ -67,5 +67,6 @@ func autoMigrate() error {
 		entity.Record2{},
 		entity.Record3{},
 		entity.Table4{},
+		entity.Table5{},
 	)
 }

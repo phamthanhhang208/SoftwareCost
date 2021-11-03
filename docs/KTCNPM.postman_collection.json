@@ -281,6 +281,29 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "[table5] Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:11000/projects/{{project_id}}/table5",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "11000",
+					"path": [
+						"projects",
+						"{{project_id}}",
+						"table5"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -132,4 +133,76 @@ func (fac Factory) NewTable4FromRecord2(prj string, record2s []*Record2) *Table4
 		MTotal:      mTotal,
 		TTotal:      tTotal,
 	}
+}
+
+type CreateTable5Spec struct {
+	ProjectUUID         string
+	DistributedRank     int
+	InstantRank         int
+	OnlineRank          int
+	ComplexityRank      int
+	ReusableRank        int
+	EasyInstallRank     int
+	EasyUseRank         int
+	ConvertableRank     int
+	EasyConvertRank     int
+	ConcurrencyRank     int
+	SpecialSecurityRank int
+	Direct3rdPartyRank  int
+	SpecialTrainingRank int
+}
+
+func (fac Factory) NewTable5(prj string, spec CreateTable5Spec) (*Table5, error) {
+	if !checkTable5Rank(spec.DistributedRank) {
+		return nil, errors.New("invalid DistributedRank")
+	}
+	if !checkTable5Rank(spec.InstantRank) {
+		return nil, errors.New("invalid InstantRank")
+	}
+	if !checkTable5Rank(spec.OnlineRank) {
+		return nil, errors.New("invalid OnlineRank")
+	}
+	if !checkTable5Rank(spec.ComplexityRank) {
+		return nil, errors.New("invalid ComplexityRank")
+	}
+	if !checkTable5Rank(spec.ReusableRank) {
+		return nil, errors.New("invalid ReusableRank")
+	}
+	if !checkTable5Rank(spec.EasyInstallRank) {
+		return nil, errors.New("invalid EasyInstallRank")
+	}
+	if !checkTable5Rank(spec.EasyUseRank) {
+		return nil, errors.New("invalid EasyUseRank")
+	}
+	if !checkTable5Rank(spec.ConvertableRank) {
+		return nil, errors.New("invalid ConvertableRank")
+	}
+	if !checkTable5Rank(spec.EasyConvertRank) {
+		return nil, errors.New("invalid EasyConvertRank")
+	}
+	if !checkTable5Rank(spec.ConcurrencyRank) {
+		return nil, errors.New("invalid ConcurrencyRank")
+	}
+	if !checkTable5Rank(spec.SpecialSecurityRank) {
+		return nil, errors.New("invalid SpecialSecurityRank")
+	}
+	if !checkTable5Rank(spec.Direct3rdPartyRank) {
+		return nil, errors.New("invalid Direct3rdPartyRank")
+	}
+
+	return &Table5{
+		ProjectUUID:         prj,
+		DistributedRank:     spec.DistributedRank,
+		InstantRank:         spec.InstantRank,
+		OnlineRank:          spec.OnlineRank,
+		ComplexityRank:      spec.ComplexityRank,
+		ReusableRank:        spec.ReusableRank,
+		EasyInstallRank:     spec.EasyInstallRank,
+		EasyUseRank:         spec.EasyUseRank,
+		ConvertableRank:     spec.ConvertableRank,
+		EasyConvertRank:     spec.EasyConvertRank,
+		ConcurrencyRank:     spec.ConcurrencyRank,
+		SpecialSecurityRank: spec.SpecialSecurityRank,
+		Direct3rdPartyRank:  spec.Direct3rdPartyRank,
+	}, nil
 }
