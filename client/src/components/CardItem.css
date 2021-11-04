@@ -1,9 +1,11 @@
 .site-card-wrapper {
-    padding: 30px;
-    background: #ececec;
+    padding: 20px;
+    /* background: #ececec; */
 }
 
-.ant-card { margin-bottom: 30px; }
+.ant-card { 
+    margin-bottom: 30px;
+}
 
 .ant-card-body p{
     margin: 10px;

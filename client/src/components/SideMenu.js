@@ -1,32 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
 import 'antd/dist/antd.css';
 import {Layout, Menu} from 'antd';
+import { Link, useParams, useLocation  } from 'react-router-dom';
+import {UserOutlined, FundOutlined, DesktopOutlined, ControlOutlined, CalculatorOutlined, DollarCircleOutlined, UnorderedListOutlined, BulbOutlined } from '@ant-design/icons'
 
-const { SubMenu } = Menu;
+
 const { Sider } = Layout;
 
 export default function SideMenu() {
+    const {id} = useParams()
+    const [collapsed,setCollapsed] = useState(false)
+    const location = useLocation();
+
+
+    const toggle = () => {
+        setCollapsed(!collapsed)
+    }
+
     return (
-        <Sider width={250} className="site-layout-background">
+        <Sider width={250} className="site-layout-background" collapsible collapsed={collapsed} onCollapse={toggle}>
             <Menu
             mode="inline"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
+            selectedKeys={[location.pathname]}
             style={{ height: '100%', borderRight: 0 }}
             >
-                
-                <Menu.Item key="1">Yêu cầu chức năng</Menu.Item>
-                <Menu.Item key="2">Trường hợp sử dụng</Menu.Item>
-                <Menu.Item key="3">Điểm tác nhân</Menu.Item>
-                <Menu.Item key="4">Điểm trường hợp sử dụng</Menu.Item>
-                <Menu.Item key="5">Hệ số phức tạp KT-CN</Menu.Item>
-                
-                <SubMenu key="sub2" title="Hệ số tác động, phức tạp của môi trường">
-                    <Menu.Item key="6">Hệ số phức tạp, nhóm làm việc</Menu.Item>
-                    <Menu.Item key="7">Hệ số phức tạp môi trường</Menu.Item>
-                </SubMenu>
-
-                <Menu.Item key="8">Giá trị phần mềm</Menu.Item>
+                <Menu.Item key={`/project-details/${id}/software-requirement`} icon={<UnorderedListOutlined />}><Link to={`/project-details/${id}/software-requirement`}>Yêu cầu chức năng</Link></Menu.Item>
+                <Menu.Item key={`/project-details/${id}/usecase-actor`} icon={<BulbOutlined />}><Link to ={`/project-details/${id}/usecase-actor`}>Trường hợp sử dụng</Link></Menu.Item>
+                <Menu.Item key={`/project-details/${id}/actor-points`} icon={<UserOutlined />}><Link to= {`/project-details/${id}/actor-points`}>Điểm tác nhân</Link></Menu.Item>
+                <Menu.Item key={`/project-details/${id}/usecase-points`} icon={<FundOutlined />} ><Link to= {`/project-details/${id}/usecase-points`}>Điểm trường hợp sử dụng</Link></Menu.Item>
+                <Menu.Item key={`/project-details/${id}/tech-complexity`} icon={<DesktopOutlined />} ><Link to= {`/project-details/${id}/tech-complexity`}>Hệ số phức tạp KT-CN</Link></Menu.Item>
+                <Menu.Item key={`/project-details/${id}/environment-points`}icon={<ControlOutlined />} ><Link to= {`/project-details/${id}/environment-points`}>Hệ số tác động, phức tạp của môi trường và nhóm làm việc</Link></Menu.Item>
+                <Menu.Item key={`/project-details/${id}/software-cost`} icon={<CalculatorOutlined />} ><Link to= {`/project-details/${id}/software-cost`}>Giá trị phần mềm</Link></Menu.Item>
+                <Menu.Item key={`/project-details/${id}/software-estimate`} icon={<DollarCircleOutlined />}><Link to= {`/project-details/${id}/software-estimate`}>Chi phí phần mềm</Link></Menu.Item>
             </Menu>
         </Sider>
     )

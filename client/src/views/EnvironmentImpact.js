@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import ProjectDetailsLayout from '../components/ProjectDetailsLayout'
 import EditTableCell from '../components/EditTableCell'
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 const renderContent = (value, row, index) => {
     const obj = {
@@ -270,6 +273,7 @@ export default function EnvironmentImpact() {
     
     return (
         <ProjectDetailsLayout>
+            <Title level={3}>Bảng tính toán hệ số tác động môi trường, nhóm làm việc, hệ số phức tạp về môi trường</Title>
             <EditTableCell
             columns={columns} 
             dataSource={datas} 

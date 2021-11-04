@@ -10,7 +10,7 @@ const { Content } = Layout;
 export default function ProjectDetailsLayout(props) {
     return (
         <div>
-            <Layout>
+            <Layout style={{ minHeight: '100vh' }} >
             <Navbar />
             <Layout>
                <SideMenu /> 
