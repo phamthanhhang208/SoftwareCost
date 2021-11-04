@@ -1,0 +1,12 @@
+Database:
+  Host:       127.0.0.1
+  Port:       5432
+  DBName:     ktcnpmdb
+  User:       ktcnpmuser
+  Pass:       ktcnpmpass
+  LogLevel:   Info
+  LogColor:   true
+
+HTTP:
+  Host: 0.0.0.0
+  Port: 11000
