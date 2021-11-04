@@ -23,11 +23,25 @@ const EditTableRow = (props) => {
     children,
     ...restProps
   }) => {
-    const inputNode = inputType === 'select' ? <Select>
-        {option.map(option => {
-            return <Option key={option}>{option}</Option>
-        })}
-    </Select> : <Input />;
+    // const inputNode = inputType === 'select' ? (option.map(option => {
+    //   return <Select key={uuidv4()}>
+    //     {option.map(array => {
+    //         return <Option key={array}>{array}</Option>
+    //     })}
+    // </Select>}) ): <Input />;
+    let inputNode = null
+    if(dataIndex === 'type'){
+      inputNode = <Select>{option[0].map(array => {
+        return <Option key={array}>{array}</Option>
+      })}</Select>
+    } else if(dataIndex === 'type1'){
+      inputNode = <Select>{option[1].map(array => {
+        return <Option key={array}>{array}</Option>
+      })}</Select>
+    } else {
+      inputNode = <Input />
+    }
+
     return (
       <td {...restProps}>
         {editing ? (
@@ -137,7 +151,7 @@ const EditTableRow = (props) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'type' ? 'select' : 'text',
+        inputType: col.dataIndex.includes('type') ? 'select' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),

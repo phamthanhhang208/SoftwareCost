@@ -21,7 +21,7 @@ const columns = [
     }
 ]
 
-const option = ["Dữ liệu đầu ra", "Dữ liệu đầu vào", "Yêu cầu truy vấn", "Cơ sở dữ liệu", "Dữ liệu tra cứu"]
+const option = [["Dữ liệu đầu ra", "Dữ liệu đầu vào", "Yêu cầu truy vấn", "Cơ sở dữ liệu", "Dữ liệu tra cứu"]]
 
 export default function Requirement() {
     const [handleDelete,handleAdd,handleData,data] = useTableEditRow({requirement:'-',type:'-',note:'-'})

@@ -28,11 +28,6 @@ const columns = [
         title: "Điểm từng loại tác nhân",
         dataIndex: "ketqua",
     },
-    {
-        title: "Ghi chú",
-        dataIndex: "note",
-        editable: true
-    },
 ]
 
 const initalValues = [

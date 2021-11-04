@@ -25,16 +25,21 @@ const columns = [
         editable: true,
     },
     {
+        title: 'Phân loại Use-case',
+        dataIndex: 'type1',
+        editable: true,
+    },
+    {
         title: 'Mức độ cần thiết',
         dataIndex: "type",
         editable: true,
     }
 ]
 
-const option = ["B","M","T"]
+const option = [["B","M","T"],["Đơn giản", "Trung Bình", "Phức tạp"]]
 
 export default function UseCase() {
-    const [handleDelete,handleAdd,handleData,data] = useTableEditRow({usecase:'-',mainActor:'-',minorActor:'-',type:'-',desc:'-'})
+    const [handleDelete,handleAdd,handleData,data] = useTableEditRow({usecase:'-',mainActor:'-',minorActor:'-',type:'-',desc:'-',type1:'-'})
     return (
         <ProjectDetailsLayout>
             <EditTableRow 

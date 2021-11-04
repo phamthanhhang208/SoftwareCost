@@ -25,11 +25,6 @@ const columns = [
         title: 'Kết quả',
         dataIndex: 'ketqua',
     },
-    {
-        title: 'Ghi chú',
-        dataIndex: 'note',
-        editable: true
-    }
 ]
 const initalValues = [
     {

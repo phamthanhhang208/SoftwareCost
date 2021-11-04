@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import 'antd/dist/antd.css';
-import { Table, Form, Select, Input } from 'antd';
+import { Table, Form, Select, InputNumber } from 'antd';
 const { Option } = Select;
 const EditableContext = React.createContext(null);
 const EditableRow = ({ index, ...props }) => {
@@ -70,7 +70,7 @@ export default function EditTableCell(props) {
                 {options.map(option => {
                     return <Option key = {option.value} >{option.label}</Option>
                 })}
-            </Select>: <Input ref={inputRef} onPressEnter={save} onBlur={save} /> }
+            </Select>: <InputNumber min={0} ref={inputRef} onPressEnter={save} onBlur={save} /> }
             
             </Form.Item>
           ) : (
