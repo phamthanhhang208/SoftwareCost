@@ -40,7 +40,7 @@ func (g GormRepo) SaveTable4(ctx context.Context, table4 *entity.Table4) error {
 		}
 
 		// update the existing table
-		err = tx.WithContext(ctx).Model(table4Md).Save(table4).Error
+		err = tx.WithContext(ctx).Model(table4Md).Where("project_uuid = ?", table4.ProjectUUID).Save(table4).Error
 		if err != nil {
 			return err
 		}
