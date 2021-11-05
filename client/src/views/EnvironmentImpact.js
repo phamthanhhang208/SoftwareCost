@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import ProjectDetailsLayout from '../components/ProjectDetailsLayout'
 import EditTableCell from '../components/EditTableCell'
 import { Typography } from 'antd';
+import projectContext from '../context/projects-context';
+import TableDataContext from '../context/tableData-context';
 
 const { Title } = Typography;
 
@@ -84,81 +86,81 @@ const scoreOptions = [
     }
 ]
 
-const initialDatas = [
-    {
-        key: '1',
-        heso: 'Đánh giá cho từng thành viên',
-    },
-    {
-        key: '2',
-        heso: 'Có áp dụng qui trình phát triển phần mềm theo mẫu RUP và có hiểu biết về RUP hoặc quy trình phát triển phần mềm tương đương',
-        trongso: 1.5,
-        tbc: '',
-        ketqua: '',
-        ondinh: 0,
-    },
-    {
-        key: '3',
-        heso: 'Có kinh nghiệm về ứng dụng tương tự',
-        trongso: 0.5,
-        tbc: '',
-        ketqua: '',
-        ondinh: 0
-    },
-    {
-        key: '4',
-        heso: 'Có kinh nghiệm về hướng đối tượng',
-        trongso: 1,
-        tbc: '',
-        ketqua: '',
-        ondinh: 0
-    },
-    {
-        key: '5',
-        heso: 'Có khả năng lãnh đạo nhóm',
-        trongso: 0.5,
-        tbc: '',
-        ketqua: '',
-        ondinh: 0
-    },
-    {
-        key: '6',
-        heso: 'Tính chất năng động',
-        trongso: 1,
-        tbc: '',
-        ketqua: '',
-        ondinh: 0
-    },
-    {
-        key: '7',
-        heso: 'Đánh giá chung cho dự án'
-    },
-    {
-        key: '8',
-        heso: 'Độ ổn định của các yêu cầu',
-        trongso: 2,
-        tbc: 0,
-        ketqua: 0,
-        ondinh: 0
-    },
-    {
-        key: '9',
-        heso: 'Sử dụng các nhân viên bán thời gian',
-        trongso: -1,
-        tbc: 0,
-        ketqua: 0,
-        ondinh: 0
-    },
-    {
-        key: '10',
-        heso: 'Dùng ngôn ngữ lập trình loại khó',
-        trongso: -1,
-        tbc: 0,
-        ketqua: 0,
-        ondinh: 0
-    },
+// const initialDatas = [
+//     {
+//         key: '1',
+//         heso: 'Đánh giá cho từng thành viên',
+//     },
+//     {
+//         key: '2',
+//         heso: 'Có áp dụng qui trình phát triển phần mềm theo mẫu RUP và có hiểu biết về RUP hoặc quy trình phát triển phần mềm tương đương',
+//         trongso: 1.5,
+//         tbc: '',
+//         ketqua: '',
+//         ondinh: 0,
+//     },
+//     {
+//         key: '3',
+//         heso: 'Có kinh nghiệm về ứng dụng tương tự',
+//         trongso: 0.5,
+//         tbc: '',
+//         ketqua: '',
+//         ondinh: 0
+//     },
+//     {
+//         key: '4',
+//         heso: 'Có kinh nghiệm về hướng đối tượng',
+//         trongso: 1,
+//         tbc: '',
+//         ketqua: '',
+//         ondinh: 0
+//     },
+//     {
+//         key: '5',
+//         heso: 'Có khả năng lãnh đạo nhóm',
+//         trongso: 0.5,
+//         tbc: '',
+//         ketqua: '',
+//         ondinh: 0
+//     },
+//     {
+//         key: '6',
+//         heso: 'Tính chất năng động',
+//         trongso: 1,
+//         tbc: '',
+//         ketqua: '',
+//         ondinh: 0
+//     },
+//     {
+//         key: '7',
+//         heso: 'Đánh giá chung cho dự án'
+//     },
+//     {
+//         key: '8',
+//         heso: 'Độ ổn định của các yêu cầu',
+//         trongso: 2,
+//         tbc: 0,
+//         ketqua: 0,
+//         ondinh: 0
+//     },
+//     {
+//         key: '9',
+//         heso: 'Sử dụng các nhân viên bán thời gian',
+//         trongso: -1,
+//         tbc: 0,
+//         ketqua: 0,
+//         ondinh: 0
+//     },
+//     {
+//         key: '10',
+//         heso: 'Dùng ngôn ngữ lập trình loại khó',
+//         trongso: -1,
+//         tbc: 0,
+//         ketqua: 0,
+//         ondinh: 0
+//     },
 
-]
+// ]
 
 const initSummaryCells = [
     {
@@ -206,40 +208,52 @@ function pCalc(num){
 }
 
 export default function EnvironmentImpact() {
-
+    const {table6,updateTable6,updateSummary} = useContext(TableDataContext)
     const [columns,setColumns] = useState(initColumns)
-    const [datas,setDatas] = useState(initialDatas)
+    const [datas,setDatas] = useState(table6)
     const [summaryCells,setSummaryCells] = useState(initSummaryCells)
 
-    const employee = 6
+    //console.log(datas)
+    const {project} = useContext(projectContext)
+    //console.log(ctx)
+    const employee = project[project.length-1].employees
 
     useEffect(()=>{
+        if(columns.length === 5){
+        
         const updatedColumns = [...columns]
-        for (let i = 1; i <= employee; i++){
-            updatedColumns.splice(i+1,0,{title:`NV ${i}`,dataIndex:`diem${i}`,editable: true})
-        } 
-        setColumns(updatedColumns)
-    },[]) // eslint-disable-line react-hooks/exhaustive-deps
-
-    useEffect(() => {
         const updatedData = [...datas]
         let employeeScore = {}
 
-        for (let i=0; i<= employee; i++){
+        for (let i = 1; i <= employee; i++){
+            updatedColumns.splice(i+1,0,{title:`NV ${i}`,dataIndex:`diem${i}`,editable: true})
+        }
+
+        setColumns(updatedColumns)
+
+
+        for (let i=1; i<= employee; i++){
             employeeScore[`diem${i}`] = 0
         }
 
-        for (let i = 1; i<=5; i++){
-            updatedData[i] = {...updatedData[i],...employeeScore}
+        for (let i = 1; i<= employee; i++){
+            if(!Object.keys(updatedData[i]).includes('diem1')){
+                updatedData[i] = {...updatedData[i],...employeeScore}
+            }
         }
+            
+
         setDatas(updatedData)
-    }, [columns]) // eslint-disable-line react-hooks/exhaustive-deps
+        updateTable6(updatedData)
+    }
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
+
 
     const handleChangePoint = (row) => {
         const {key} = row
         //console.log(row)
         let employeeScore = 0
-        for (let i=0; i<= employee; i++){
+        for (let i=1; i<= employee; i++){
             employeeScore += parseInt(row[`diem${i}`])
         }
 
@@ -249,7 +263,8 @@ export default function EnvironmentImpact() {
             return data
         })
         setDatas(newData)
-        
+        //console.log(newData)
+        updateTable6(newData)
     }
 
     useEffect(() => {
@@ -263,11 +278,11 @@ export default function EnvironmentImpact() {
 
         summaryCellsValues[0].value = efw
         summaryCellsValues[1].value = round(1.4 + (0.03 * efw))
-        summaryCellsValues[2].value = es
+        summaryCellsValues[2].value = round(es)
         summaryCellsValues[3].value = pCalc(es)
 
         setSummaryCells(summaryCellsValues)
-        
+        updateSummary({efw:summaryCellsValues[0].value, ef:summaryCellsValues[1].value, es:summaryCellsValues[2].value, p:summaryCellsValues[3].value })
     }, [datas])  // eslint-disable-line react-hooks/exhaustive-deps
 
     

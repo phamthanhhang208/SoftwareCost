@@ -48,7 +48,7 @@ export default function EditTableCell(props) {
         const save = async () => {
           try {
             const values = await form.validateFields();
-            console.log(values)
+            //console.log(values)
             toggleEdit();
             handleSave({ ...record, ...values });
           } catch (errInfo) {

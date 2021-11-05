@@ -110,7 +110,7 @@ const EditTableRow = (props) => {
              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */} 
             <a
             /*eslint-disable-next-line no-script-url*/
-              href="javascript:;"
+              href="#/"
               onClick={() => save(record.key)}
               style={{
                 marginRight: 8,

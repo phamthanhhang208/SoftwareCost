@@ -1,29 +1,8 @@
 import { useState, useEffect } from 'react';
 
-const initalValues = [
-    {
-        key: '1',
-        type: 'Đơn giản',
-        usecaseNum: 0,
-        score: 0
-    },
-    {
-        key: '2',
-        type: 'Trung bình',
-        usecaseNum: 0,
-        score: 0
-    },
-    {
-        key: '3',
-        type: 'Phức tạp',
-        usecaseNum: 0,
-        score: 0
-    },
-]
-
-export default function useTableWithSummary(heso,type){
-
-    const [usecases,setUsecases] = useState(initalValues)
+export default function useTableWithSummary(init,heso,type){
+   // console.log(init)
+    const [usecases,setUsecases] = useState(init)
     const [summaryCell,setSummaryCells] = useState([
         {
             key: `summary${type}`,
@@ -41,6 +20,7 @@ export default function useTableWithSummary(heso,type){
             if(key === usecase.key && type === 'Phức tạp') return {...usecase, usecaseNum:usecaseNum, score: 15 * parseInt(usecaseNum) }
             return usecase
         })
+        //console.log(updatedData)
         setUsecases(updatedData)
     }
 
@@ -52,7 +32,7 @@ export default function useTableWithSummary(heso,type){
 
     useEffect(()=>{
         let totalScore = 0
-        for(let i=0; i< initalValues.length; i++){
+        for(let i=0; i< init.length; i++){
             totalScore += usecases[i].score * heso
         }
         handleSummaryValues(totalScore)

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import ProjectDetailsLayout from '../components/ProjectDetailsLayout'
 import EditTableRow from '../components/EditTableRow'
 import useTableEditRow from '../hooks/useTableEditRow';
+import TableDataContext from '../context/tableData-context';
 
 const columns = [
     {
@@ -24,7 +25,8 @@ const columns = [
 const option = [["Dữ liệu đầu ra", "Dữ liệu đầu vào", "Yêu cầu truy vấn", "Cơ sở dữ liệu", "Dữ liệu tra cứu"]]
 
 export default function Requirement() {
-    const [handleDelete,handleAdd,handleData,data] = useTableEditRow({requirement:'-',type:'-',note:'-'})
+    const {table1,updateTable1} = useContext(TableDataContext)
+    const [handleDelete,handleAdd,handleData,data] = useTableEditRow({requirement:'-',type:'-',note:'-'},table1,updateTable1)
     
     return (
         <ProjectDetailsLayout>

@@ -1,46 +1,48 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import 'antd/dist/antd.css';
 import './CardItem.css';
 import { Card, Col, Row, Button } from 'antd';
 import ProjectCreateForm from './ProjectCreateForm';
 import { v4 as uuidv4 } from 'uuid';
 import { useHistory } from 'react-router'
+import projectContext from '../context/projects-context';
 
-const initData = [
-    {
-        key: uuidv4(),
-        projectName: 'Music Player',
-        desc: 'Xây dựng ứng dụng nghe nhạc đa nền tảng'
-    },
-    {
-        key: uuidv4(),
-        projectName: 'Budget App',
-        desc: 'Ứng dụng giúp quản lý thu chi tài chính'
-    },
-    {
-        key: uuidv4(),
-        projectName: 'Timerly',
-        desc: 'Widget đồng hồ đếm ngược trên IOS'
-    },
-    {
-        key: uuidv4(),
-        projectName: 'Kochi dictionary',
-        desc: 'Ứng dụng tra từ điển tiếng Trung cho học sinh'
-    },
-    {
-        key: uuidv4(),
-        projectName: 'Tododo',
-        desc: 'Ứng dụng ghi lại và thông báo công việc cần làm trên Android'
-    },
-]
+// const initData = [
+//     {
+//         key: uuidv4(),
+//         projectName: 'Music Player',
+//         desc: 'Xây dựng ứng dụng nghe nhạc đa nền tảng'
+//     },
+//     {
+//         key: uuidv4(),
+//         projectName: 'Budget App',
+//         desc: 'Ứng dụng giúp quản lý thu chi tài chính'
+//     },
+//     {
+//         key: uuidv4(),
+//         projectName: 'Timerly',
+//         desc: 'Widget đồng hồ đếm ngược trên IOS'
+//     },
+//     {
+//         key: uuidv4(),
+//         projectName: 'Kochi dictionary',
+//         desc: 'Ứng dụng tra từ điển tiếng Trung cho học sinh'
+//     },
+//     {
+//         key: uuidv4(),
+//         projectName: 'Tododo',
+//         desc: 'Ứng dụng ghi lại và thông báo công việc cần làm trên Android'
+//     },
+// ]
 
 
 export default function CardItem() {
     const history = useHistory()
     const [visible, setVisible] = useState(false);
-    const [data,setData] = useState(initData)
+    //const [data,setData] = useState(initData)
+    const {project, handleProjectChange} = useContext(projectContext)
 
-    const result = data.reduce((resultArray, item, index) => { 
+    const result = project.reduce((resultArray, item, index) => { 
         const chunkIndex = Math.floor(index/3)
       
         if(!resultArray[chunkIndex]) {
@@ -54,12 +56,13 @@ export default function CardItem() {
 
 
     const onCreate = (values) => {
-        const updatedProjects = [...data]
-        const newProject = {key: uuidv4(), projectName: values.title, desc: values.description} 
+        const updatedProjects = [...project]
+        const newProject = {key: uuidv4(), projectName: values.title, desc: values.description,employees:values.employees} 
         updatedProjects.push(newProject)
         //console.log('Received values of form: ', values);
         setVisible(false);
-        setData(updatedProjects)
+        handleProjectChange(updatedProjects)
+        //setData(updatedProjects)
         // window.history.replaceState(null, null, `project-details/${newProject.key}/software-estimate` );
         history.push(`project-details/${newProject.key}/software-requirement`);
     }

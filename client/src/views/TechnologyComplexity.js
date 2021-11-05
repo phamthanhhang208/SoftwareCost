@@ -1,8 +1,9 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect,useContext} from 'react'
 import ProjectDetailsLayout from '../components/ProjectDetailsLayout'
 import EditTableCell from '../components/EditTableCell';
 import 'antd/dist/antd.css';
 import { Typography } from 'antd';
+import TableDataContext from '../context/tableData-context';
 
 const { Title } = Typography;
 
@@ -26,120 +27,120 @@ const columns = [
         dataIndex: 'ketqua',
     },
 ]
-const initalValues = [
-    {
-        key: '0',
-        heso: 'Hệ thống phân tán',
-        trongso: 2,
-        diem: 0,
-        ketqua: 0,
-        note: '-',
-    },
-    {
-        key: '1',
-        heso: 'Tính chất đáp ứng tức thời hoặc yêu cầu đảm bảo thông lượng',
-        trongso: 1,
-        diem: 0 ,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '2',
-        heso: 'Hiệu quả sử dụng trực tuyến',
-        trongso: 1,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '3',
-        heso: 'Độ phức tạp xử lý bên trong',
-        trongso: 1,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '4',
-        heso: 'Mã nguồn phải tái sử dụng được',
-        trongso: 2,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '5',
-        heso: 'Dễ cài đặt',
-        trongso: 0.5,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '6',
-        heso: 'Dễ sử dụng',
-        trongso: 0.5,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '7',
-        heso: 'Khả năng chuyển đổi',
-        trongso: 2,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '8',
-        heso: 'Khả năng dễ thay đổi',
-        trongso: 1,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '9',
-        heso: 'Khả năng chuyển đổi',
-        trongso: 1,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '10',
-        heso: 'Sử dụng đồng thời',
-        trongso: 1,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '11',
-        heso: 'Có các tính năng bảo mật đặc biệt',
-        trongso: 1,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '12',
-        heso: 'Cung cấp truy nhập trức tiếp tới các phần mềm của hãng thứ ba',
-        trongso: 1,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '13',
-        heso: 'Yêu cầu phương tiện đào tạo đặc biệt cho người sử dụng',
-        trongso: 1,
-        diem: 0,
-        ketqua: 0,
-        note: '-'
-    },
-]
+// const initalValues = [
+//     {
+//         key: '0',
+//         heso: 'Hệ thống phân tán',
+//         trongso: 2,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-',
+//     },
+//     {
+//         key: '1',
+//         heso: 'Tính chất đáp ứng tức thời hoặc yêu cầu đảm bảo thông lượng',
+//         trongso: 1,
+//         diem: 0 ,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '2',
+//         heso: 'Hiệu quả sử dụng trực tuyến',
+//         trongso: 1,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '3',
+//         heso: 'Độ phức tạp xử lý bên trong',
+//         trongso: 1,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '4',
+//         heso: 'Mã nguồn phải tái sử dụng được',
+//         trongso: 2,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '5',
+//         heso: 'Dễ cài đặt',
+//         trongso: 0.5,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '6',
+//         heso: 'Dễ sử dụng',
+//         trongso: 0.5,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '7',
+//         heso: 'Khả năng chuyển đổi',
+//         trongso: 2,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '8',
+//         heso: 'Khả năng dễ thay đổi',
+//         trongso: 1,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '9',
+//         heso: 'Khả năng chuyển đổi',
+//         trongso: 1,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '10',
+//         heso: 'Sử dụng đồng thời',
+//         trongso: 1,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '11',
+//         heso: 'Có các tính năng bảo mật đặc biệt',
+//         trongso: 1,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '12',
+//         heso: 'Cung cấp truy nhập trức tiếp tới các phần mềm của hãng thứ ba',
+//         trongso: 1,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+//     {
+//         key: '13',
+//         heso: 'Yêu cầu phương tiện đào tạo đặc biệt cho người sử dụng',
+//         trongso: 1,
+//         diem: 0,
+//         ketqua: 0,
+//         note: '-'
+//     },
+// ]
 
 const scoreOptions = [
     {
@@ -184,7 +185,8 @@ const initialsummaryRow = [
 ]
 
 export default function TechnologyComplexity() {
-    const [datas,setDatas] = useState(initalValues)
+    const {table5,updateTable5,updateSummary} = useContext(TableDataContext)
+    const [datas,setDatas] = useState(table5)
     const [summaryCells,setSummaryCells] = useState(initialsummaryRow)
     
 
@@ -195,6 +197,7 @@ export default function TechnologyComplexity() {
         summaryValues[0].value = tfw
         summaryValues[1].value = tcf
         setSummaryCells(summaryValues)
+        updateSummary({tfw:summaryValues[0].value,tcf:summaryValues[1].value})
     }
     const handleChangePoint = (row) => {
         const {key,diem,note} = row
@@ -203,6 +206,7 @@ export default function TechnologyComplexity() {
             return data
         })
        setDatas(newData)
+       updateTable5(newData)
     }
 
     useEffect(()=>{

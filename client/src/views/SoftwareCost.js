@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import ProjectDetailsLayout from '../components/ProjectDetailsLayout'
 import EditTableCell from '../components/EditTableCell'
 import { Typography } from 'antd';
+import TableDataContext from '../context/tableData-context';
 
 const { Title } = Typography;
 
@@ -102,10 +103,41 @@ const initSummaryCells = [
     },
 ]
 
+const formatter = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+    minimumFractionDigits: 2
+  })
+
 
 export default function SoftwareCost() {
+    const {summary} = useContext(TableDataContext)
+    // eslint-disable-next-line
     const [datas,setDatas] = useState(initialDatas)
+    // eslint-disable-next-line
     const [summaryCells,setSummaryCells] = useState(initSummaryCells)
+
+    useEffect(()=>{
+        //console.log('effect running')
+        const usecasePoints = [...datas]
+        usecasePoints[1]["value"] = summary.taw
+        usecasePoints[2]['value'] = summary.tbf
+        usecasePoints[3]['value'] = summary.uucp
+        usecasePoints[4]['value'] = summary.tcf
+        usecasePoints[5]['value'] = summary.ef
+        usecasePoints[6]['value'] = summary.aucp
+        setDatas(usecasePoints)
+    },[summary]) // eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(()=>{
+        //console.log('effect in other point')
+        const otherPoints = [...summaryCells]
+        otherPoints[0]['value'] = summary.p
+        otherPoints[1]['value'] = summary.e
+        otherPoints[2]['value'] =  formatter.format(summary.h)
+        otherPoints[3]['value'] =  formatter.format(summary.g)
+        setSummaryCells(otherPoints)
+    },[summary]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <ProjectDetailsLayout>

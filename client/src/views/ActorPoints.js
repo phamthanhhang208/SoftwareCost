@@ -1,8 +1,9 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect,useContext} from 'react'
 import ProjectDetailsLayout from '../components/ProjectDetailsLayout'
 import EditTableCell from '../components/EditTableCell';
 import 'antd/dist/antd.css';
 import { Typography } from 'antd';
+import TableDataContext from '../context/tableData-context';
 
 const { Title } = Typography;
 
@@ -30,36 +31,6 @@ const columns = [
     },
 ]
 
-const initalValues = [
-    {
-        key: '1',
-        actorName: 'Đơn giản',
-        mota: 'Thuộc loại giao diện của chương trình',
-        actorNum: 0,
-        trongso: 1,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '2',
-        actorName: 'trung bình',
-        mota: 'Giao diện tương tác hoặc phục vụ một giao thức hoạt động',
-        actorNum: 0,
-        trongso: 2,
-        ketqua: 0,
-        note: '-'
-    },
-    {
-        key: '3',
-        actorName: 'Phức tạp',
-        mota: 'Giao diện đồ họa',
-        actorNum: 0,
-        trongso: 2,
-        ketqua: 0,
-        note: '-'
-    },
-]
-
 const initialsummaryRow = [
     {
         key: '4',
@@ -70,8 +41,8 @@ const initialsummaryRow = [
 ]
 
 export default function ActorPoints(){
-
-    const [datas,setDatas] = useState(initalValues)
+    const {table3,updateTable3,updateSummary} = useContext(TableDataContext)
+    const [datas,setDatas] = useState(table3)
     const [summaryCells,setSummaryCells] = useState(initialsummaryRow)
 
     const handleChangePoint = (row) => {
@@ -81,12 +52,14 @@ export default function ActorPoints(){
             return data
         })
         setDatas(newData)
+        updateTable3(newData)
     }
 
     const handleSummaryValues = (totalScore) => {
         const summaryValues = [...summaryCells]
         summaryValues[0].value = Math.floor(totalScore)
         setSummaryCells(summaryValues)
+        updateSummary({taw:summaryValues[0].value})
     }
 
     useEffect(()=>{

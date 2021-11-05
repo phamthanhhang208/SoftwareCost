@@ -1,7 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useContext} from 'react'
 import useTableWithSummary from '../hooks/useTableWithSummary'
 import ProjectDetailsLayout from '../components/ProjectDetailsLayout'
 import EditTableCell from '../components/EditTableCell'
+import TableDataContext from '../context/tableData-context';
 import { Typography } from 'antd';
 const { Title } = Typography;
 
@@ -26,15 +27,19 @@ const columns = [
 
 
 export default function UseCasePoints() {
-    const[usecaseB,summaryCellB,handleChangePointsB] = useTableWithSummary(1,'B')
-    const[usecaseM,summaryCellM,handleChangePointsM] = useTableWithSummary(1.2 ,'M')
-    const[usecaseT,summaryCellT,handleChangePointsT] = useTableWithSummary(1.5 ,'T')
+    const {table4,updateTable4,updateSummary} = useContext(TableDataContext)
+    const[usecaseB,summaryCellB,handleChangePointsB] = useTableWithSummary(table4[0]["B"],1,'B')
+    const[usecaseM,summaryCellM,handleChangePointsM] = useTableWithSummary(table4[1]["M"],1.2 ,'M')
+    const[usecaseT,summaryCellT,handleChangePointsT] = useTableWithSummary(table4[2]["T"],1.5 ,'T')
     const[tbf,setTbf] = useState(0)
 
     useEffect(() => {
-        //console.log(summaryCellB)
-        setTbf(summaryCellB[0].value + summaryCellM[0].value + summaryCellT[0].value)
-    }, [summaryCellB,summaryCellM,summaryCellT])
+        const total = summaryCellB[0].value + summaryCellM[0].value + summaryCellT[0].value
+        //console.log('effect running')
+        setTbf(total)
+        updateSummary({tbf:total})
+        updateTable4([{B:usecaseB},{M:usecaseM},{T:usecaseT}])
+    }, [summaryCellB,summaryCellM,summaryCellT,usecaseB,usecaseM,usecaseT]) // eslint-disable-line react-hooks/exhaustive-deps
     
     return (
         <ProjectDetailsLayout>

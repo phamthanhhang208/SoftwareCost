@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import ProjectDetailsLayout from '../components/ProjectDetailsLayout'
 import EditTableRow from '../components/EditTableRow'
 import useTableEditRow from '../hooks/useTableEditRow'
+import TableDataContext from '../context/tableData-context';
 
 const columns = [
     {
@@ -39,7 +40,8 @@ const columns = [
 const option = [["B","M","T"],["Đơn giản", "Trung Bình", "Phức tạp"]]
 
 export default function UseCase() {
-    const [handleDelete,handleAdd,handleData,data] = useTableEditRow({usecase:'-',mainActor:'-',minorActor:'-',type:'-',desc:'-',type1:'-'})
+    const {table2,updateTable2} = useContext(TableDataContext)
+    const [handleDelete,handleAdd,handleData,data] = useTableEditRow({usecase:'-',mainActor:'-',minorActor:'-',type:'-',desc:'-',type1:'-'},table2,updateTable2)
     return (
         <ProjectDetailsLayout>
             <EditTableRow 
