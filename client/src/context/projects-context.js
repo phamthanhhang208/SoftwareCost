@@ -1,12 +1,19 @@
 import React, { createContext, useState } from "react";
-//import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 const projectContext = createContext({
     project: [],
     handleProjectChange: (projects) => {},
 })
 
-const initProject = []
+const initProject = [
+    {
+        key: uuidv4(),
+        projectName: 'Music Player',
+        desc: 'Xây dựng ứng dụng nghe nhạc đa nền tảng',
+        employees: 4
+    }
+]
 
 export const ProjectProvider = (props) => {
     const [project,setProject] = useState(initProject)

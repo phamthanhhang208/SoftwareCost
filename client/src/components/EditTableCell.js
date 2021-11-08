@@ -70,7 +70,7 @@ export default function EditTableCell(props) {
                 {options.map(option => {
                     return <Option key = {option.value} >{option.label}</Option>
                 })}
-            </Select>: <InputNumber min={0} ref={inputRef} onPressEnter={save} onBlur={save} /> }
+            </Select>: <InputNumber type="number" min={0} ref={inputRef} onPressEnter={save} onBlur={save} /> }
             
             </Form.Item>
           ) : (
