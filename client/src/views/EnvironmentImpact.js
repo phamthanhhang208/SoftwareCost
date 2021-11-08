@@ -156,11 +156,11 @@ export default function EnvironmentImpact() {
         setColumns(updatedColumns)
 
 
-        for (let i=1; i<= employee; i++){
+        for (let i = 0; i<= employee; i++){
             employeeScore[`diem${i}`] = 0
         }
 
-        for (let i = 1; i<= employee; i++){
+        for (let i = 1; i<= 5; i++){
             if(!Object.keys(updatedData[i]).includes('diem1')){
                 updatedData[i] = {...updatedData[i],...employeeScore}
             }
