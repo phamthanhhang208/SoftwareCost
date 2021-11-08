@@ -4,36 +4,10 @@ import './CardItem.css';
 import { Card, Col, Row, Button } from 'antd';
 import ProjectCreateForm from './ProjectCreateForm';
 import { v4 as uuidv4 } from 'uuid';
-import { useHistory } from 'react-router'
+import { useHistory} from 'react-router'
+import { Link } from 'react-router-dom';
 import projectContext from '../context/projects-context';
 
-// const initData = [
-//     {
-//         key: uuidv4(),
-//         projectName: 'Music Player',
-//         desc: 'Xây dựng ứng dụng nghe nhạc đa nền tảng'
-//     },
-//     {
-//         key: uuidv4(),
-//         projectName: 'Budget App',
-//         desc: 'Ứng dụng giúp quản lý thu chi tài chính'
-//     },
-//     {
-//         key: uuidv4(),
-//         projectName: 'Timerly',
-//         desc: 'Widget đồng hồ đếm ngược trên IOS'
-//     },
-//     {
-//         key: uuidv4(),
-//         projectName: 'Kochi dictionary',
-//         desc: 'Ứng dụng tra từ điển tiếng Trung cho học sinh'
-//     },
-//     {
-//         key: uuidv4(),
-//         projectName: 'Tododo',
-//         desc: 'Ứng dụng ghi lại và thông báo công việc cần làm trên Android'
-//     },
-// ]
 
 
 export default function CardItem() {
@@ -78,7 +52,7 @@ export default function CardItem() {
                             return <Col span={8} key = {el.key}>
                                 <Card title= {el.projectName} extra={<a href="#/">Xóa</a>}>
                                     <p>{el.desc}</p>
-                                    <Button type="primary">Xem chi tiết</Button>
+                                    <Button type="primary"><Link to={`project-details/${project[0].key}/software-requirement`}>Xem chi tiết</Link></Button>
                                 </Card>
                             </Col>
                         })
@@ -91,7 +65,7 @@ export default function CardItem() {
         <Row gutter={16}>
             <Col span={8}>
                 <Card title="Tạo dự án">
-                <p>Thêm dự án và xác định chi phí cho phầm mềm</p>
+                <p>Thêm dự án và xác định chi phí cho phần mềm</p>
                 <Button 
                 type="primary"
                 onClick={() => {

@@ -6,25 +6,13 @@ const round = (num) => {
 
 
 const TableDataContext = createContext({
-    table1: [],
+    table1:[],
     table2:[],
     table3:[],
     table4:[],
     table5:[],
     table6:[],
     summary:{tbf:0, taw:0, tfw:0, tcf:0, efw:0, ef: 0 ,es:0, p:0, h:44238, uucp:0, aucp:0, e:0,g:0,c:0,tl:0,gpm:0},
-    table8:[],
-})
-
-const TableDataUpdateContext = createContext({
-    updateTable1: () => {},
-    updateTable2: () => {},
-    updateTable3: () => {},
-    updateTable4: () => {},
-    updateTable5: () => {},
-    updateTable6: () => {},
-    updateTable7: () => {},
-    updateTable8: () => {},
 })
 
 export const TableDataProvider = (props) => {
@@ -38,7 +26,6 @@ export const TableDataProvider = (props) => {
         actorNum: 0,
         trongso: 1,
         ketqua: 0,
-        note: '-'
     },
     {
         key: '2',
@@ -47,16 +34,14 @@ export const TableDataProvider = (props) => {
         actorNum: 0,
         trongso: 2,
         ketqua: 0,
-        note: '-'
     },
     {
         key: '3',
         actorName: 'Phức tạp',
         mota: 'Giao diện đồ họa',
         actorNum: 0,
-        trongso: 2,
+        trongso: 3,
         ketqua: 0,
-        note: '-'
     },])
     const [table4,setTable4] = useState([
         {B:[
@@ -310,8 +295,7 @@ export const TableDataProvider = (props) => {
         
         ])
     const [summary,setSummary] = useState({tbf:0, taw:0, tfw:0, tcf:0, h:44238, efw:0, ef: 0 ,es:0, p:0, uucp:0, aucp:0, e:0,g:0,c:0,tl:0,gmp:0})
-    const [table8,setTable8] = useState([])
-
+    
     const handleTable1Change = (data) => {
         setTable1(data)
     }
@@ -347,9 +331,6 @@ export const TableDataProvider = (props) => {
         setSummary(totalSummary)
     }
 
-    const handleTable8Change = (data) => {
-        setTable8(data)
-    }
 
     const contextValueTable = {
         table1: table1,
@@ -366,26 +347,11 @@ export const TableDataProvider = (props) => {
         updateTable6: handleTable6Change,
         summary:summary,
         updateSummary: handleSummaryChange,
-        table8:table8,
-        updateTable8: handleTable8Change,
     }
-
-    const contextValueUpdate = {
-        updateTable1: handleTable1Change,
-        updateTable2: handleTable2Change,
-        updateTable3: handleTable3Change,
-        updateTable4: handleTable4Change,
-        updateTable5: handleTable5Change,
-        updateTable6: handleTable6Change,
-        updateTable8: handleTable8Change,
-    }
-
 
     return (
         <TableDataContext.Provider value={contextValueTable}>
-            <TableDataUpdateContext.Provider value={contextValueUpdate}>
-                {props.children}
-            </TableDataUpdateContext.Provider>
+            {props.children}
         </TableDataContext.Provider>
     )
 }
