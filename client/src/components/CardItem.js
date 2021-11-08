@@ -52,7 +52,7 @@ export default function CardItem() {
                             return <Col span={8} key = {el.key}>
                                 <Card title= {el.projectName} extra={<a href="#/">Xóa</a>}>
                                     <p>{el.desc}</p>
-                                    <Button type="primary"><Link to={`project-details/${project[0].key}/software-requirement`}>Xem chi tiết</Link></Button>
+                                    <Button type="primary"><Link to={`project-details/${el.key}/software-requirement`}>Xem chi tiết</Link></Button>
                                 </Card>
                             </Col>
                         })
