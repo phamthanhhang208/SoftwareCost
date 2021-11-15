@@ -39,9 +39,12 @@ const columns = [
 
 const option = [["B","M","T"],["Đơn giản", "Trung Bình", "Phức tạp"]]
 
+const inputsText = [{label:'Tên Use-case', name:'usecase' },{label:'Tên tác nhân chính', name:'mainActor'},{label:'Tên tác nhân phụ', name:'minorActor'},{label:'Mô tả trường hợp sử dụng', name:'desc'}]
+const inputsSelect = [{label:'Phân loại Use-case', options:option[0], name:'type1'},{label:'Mức độ cần thiết', options:option[1], name:'type'}]
+
 export default function UseCase() {
     const {table2,updateTable2} = useContext(TableDataContext)
-    const [handleDelete,handleAdd,handleData,data] = useTableEditRow({usecase:'-',mainActor:'-',minorActor:'-',type:'-',desc:'-',type1:'-'},table2,updateTable2)
+    const [handleDelete,handleAdd,handleData,data] = useTableEditRow(table2,updateTable2)
     return (
         <ProjectDetailsLayout>
             <EditTableRow 
@@ -51,6 +54,9 @@ export default function UseCase() {
              option= {option}
              handleAdd = {handleAdd}
              handleDelete = {handleDelete}
+             title = 'Mô tả trường hợp sử dụng'
+             inputsText = {inputsText}
+             inputsSelect = {inputsSelect}
             />
         </ProjectDetailsLayout>
     )

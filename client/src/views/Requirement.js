@@ -24,9 +24,12 @@ const columns = [
 
 const option = [["Dữ liệu đầu ra", "Dữ liệu đầu vào", "Yêu cầu truy vấn", "Cơ sở dữ liệu", "Dữ liệu tra cứu"]]
 
+const inputsText = [{label:'Mô tả yêu cầu', name:'requirement'},{label:'Ghi chú', name:'note'}]
+const inputsSelect = [{label:'Phân loại',options:option[0], name:'type'}]
+
 export default function Requirement() {
     const {table1,updateTable1} = useContext(TableDataContext)
-    const [handleDelete,handleAdd,handleData,data] = useTableEditRow({requirement:'-',type:'-',note:'-'},table1,updateTable1)
+    const [handleDelete,handleAdd,handleData,data] = useTableEditRow(table1,updateTable1)
     
     return (
         <ProjectDetailsLayout>
@@ -37,7 +40,10 @@ export default function Requirement() {
             option= {option}
             handleAdd = {handleAdd}
             handleDelete = {handleDelete}
+            inputsSelect = {inputsSelect}
+            inputsText = {inputsText}
             />
+            
         </ProjectDetailsLayout>
     )
 }

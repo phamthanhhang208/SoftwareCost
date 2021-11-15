@@ -16,7 +16,7 @@ const EditableRow = ({ index, ...props }) => {
 
 
 export default function EditTableCell(props) {
-    const {dataSource, options, showHeader }  = props
+    const {dataSource, options}  = props
     //console.log(showHeader)
     
     const EditableCell = ({
@@ -119,7 +119,6 @@ export default function EditTableCell(props) {
     return (
         <div>
             <Table
-                showHeader = { !!showHeader || true }
                 components={components}
                 rowClassName={() => 'editable-row'}
                 bordered

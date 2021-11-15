@@ -156,7 +156,7 @@ export default function EnvironmentImpact() {
         setColumns(updatedColumns)
 
 
-        for (let i = 0; i<= employee; i++){
+        for (let i = 1; i<= employee; i++){
             employeeScore[`diem${i}`] = 0
         }
 

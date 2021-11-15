@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import './EditTableRow.css';
 import { Table, Input, Select , Popconfirm, Form, Typography, Button } from 'antd';
+import ModalForm from './ModalForm';
 const { Option } = Select;
 
 
 const EditTableRow = (props) => {
+
   const [form] = Form.useForm();
-  const {data, handleData, columnName, option, handleAdd, handleDelete } = props
+  const {data, handleData, columnName, option, handleAdd, handleDelete, inputsText, inputsSelect } = props
   //const [data, setData] = useState(originData);
   const [editingKey, setEditingKey] = useState('');
-
+  const [visible, setVisible] = useState(false);
   const isEditing = (record) => record.key === editingKey;
 
   const EditableCell = ({
@@ -158,10 +160,20 @@ const EditTableRow = (props) => {
       }),
     };
   });
+
+  const onCreate = (values) => {
+    handleAdd(values)
+    //console.log('Received values of form: ', values);
+    setVisible(false);
+  };
+
+
   return (
     <>
     <Button
-        onClick={handleAdd}
+        onClick={() => {
+          setVisible(true);
+        }}
         type="primary"
         style={{
             marginBottom: 16,
@@ -185,6 +197,16 @@ const EditTableRow = (props) => {
         }}
       />
     </Form>
+    <ModalForm
+      visible={visible}
+      title = 'Yêu cầu chức năng'
+      inputsText = {inputsText}
+      inputsSelect = {inputsSelect} 
+      onCancel={() => {
+        setVisible(false);
+      }}
+      onCreate={onCreate}
+    />
     </>
   );
 };
