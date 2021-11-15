@@ -22,7 +22,7 @@ const initColumns = [
     {
         title: 'Các hệ số tác động môi trường',
         dataIndex: 'heso',
-        ellipsis: true,
+        //ellipsis: true,
         width: "30%",
         render: (text,row,index) => {
             if(index === 0 || index === 6){

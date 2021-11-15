@@ -119,6 +119,7 @@ export default function EditTableCell(props) {
     return (
         <div>
             <Table
+                style ={{textWrap:'word-break'}}
                 components={components}
                 rowClassName={() => 'editable-row'}
                 bordered
