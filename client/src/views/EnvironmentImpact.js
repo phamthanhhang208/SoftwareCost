@@ -195,11 +195,12 @@ export default function EnvironmentImpact() {
         const summaryCellsValues = [...summaryCells]
         let efw = 0
         let es = 0
-        for(let i=0; i<initColumns.length-2; i++){
+        for(let i=0; i<8; i++){
             efw += datas[i].ketqua || 0
             es += datas[i].ondinh || 0
+            console.log(datas[i].ondinh)
         }
-
+        console.log(es)
         summaryCellsValues[0].value = efw
         summaryCellsValues[1].value = round(1.4 + (0.03 * efw))
         summaryCellsValues[2].value = round(es)
