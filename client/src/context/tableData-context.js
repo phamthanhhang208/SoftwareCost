@@ -172,15 +172,7 @@ export const TableDataProvider = (props) => {
         },
         {
             key: '8',
-            heso: 'Khả năng dễ thay đổi',
-            trongso: 1,
-            diem: 0,
-            ketqua: 0,
-            note: '-'
-        },
-        {
-            key: '9',
-            heso: 'Khả năng chuyển đổi',
+            heso: 'Dễ thay đổi',
             trongso: 1,
             diem: 0,
             ketqua: 0,
