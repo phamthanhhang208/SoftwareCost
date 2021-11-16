@@ -12,7 +12,7 @@ const TableDataContext = createContext({
     table4:[],
     table5:[],
     table6:[],
-    summary:{tbf:0, taw:0, tfw:0, tcf:0, efw:0, ef: 0 ,es:0, p:0, h:44238, uucp:0, aucp:0, e:0,g:0,c:0,tl:0,gpm:0},
+    summary:{tbf:0, taw:0, tfw:0, tcf:0, efw:0, ef: 0 ,es:0, p:0, h:43170, uucp:0, aucp:0, e:0,g:0,c:0,tl:0,gpm:0},
 })
 
 export const TableDataProvider = (props) => {
@@ -286,7 +286,7 @@ export const TableDataProvider = (props) => {
             },
         
         ])
-    const [summary,setSummary] = useState({tbf:0, taw:0, tfw:0, tcf:0, h:44238, efw:0, ef: 0 ,es:0, p:0, uucp:0, aucp:0, e:0,g:0,c:0,tl:0,gmp:0})
+    const [summary,setSummary] = useState({tbf:0, taw:0, tfw:0, tcf:0, h:43170, efw:0, ef: 0 ,es:0, p:0, uucp:0, aucp:0, e:0,g:0,c:0,tl:0,gmp:0})
     
     const handleTable1Change = (data) => {
         setTable1(data)
