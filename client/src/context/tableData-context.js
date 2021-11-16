@@ -141,7 +141,7 @@ export const TableDataProvider = (props) => {
         {
             key: '4',
             heso: 'Mã nguồn phải tái sử dụng được',
-            trongso: 2,
+            trongso: 1,
             diem: 0,
             ketqua: 0,
             note: '-'
