@@ -198,10 +198,10 @@ export default function EnvironmentImpact() {
         for(let i=0; i<8; i++){
             efw += datas[i].ketqua || 0
             es += datas[i].ondinh || 0
-            console.log(datas[i].ondinh)
+            //console.log(datas[i].ondinh)
         }
-        console.log(es)
-        summaryCellsValues[0].value = efw
+        //console.log(es)
+        summaryCellsValues[0].value = round(efw)
         summaryCellsValues[1].value = round(1.4 + (0.03 * efw))
         summaryCellsValues[2].value = round(es)
         summaryCellsValues[3].value = pCalc(es)
