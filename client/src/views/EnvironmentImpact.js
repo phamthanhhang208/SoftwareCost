@@ -202,7 +202,7 @@ export default function EnvironmentImpact() {
         }
         //console.log(es)
         summaryCellsValues[0].value = round(efw)
-        summaryCellsValues[1].value = round(1.4 + (-0.03 * efw))
+        summaryCellsValues[1].value = round(1.4 + ((-0.03) * efw))
         summaryCellsValues[2].value = round(es)
         summaryCellsValues[3].value = pCalc(es)
 
